@@ -22,7 +22,7 @@ Get the project up and running locally in just 3 easy steps.
 1. **Clone** the fork with HTTPS, using your local terminal to a preferred location, and **cd** into the project.
 
 ```bash
-git clone https://github.com/Organisation-name/Food-Portal.git
+git clone https://github.com/hackinutu-CAVE/Food-Portal.git
 ```
 ```
 cd Food-Portal
