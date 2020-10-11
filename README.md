@@ -38,7 +38,7 @@ Website Home page will be at localhost:8080
 phpMyAdmin page will be at localhost:5000
 
 
-3. Visit phpMyAdmin page and create database named 'Food-Portal'
+3. Visit phpMyAdmin page and create database named 'food-portal'
 
 That's it.
 
