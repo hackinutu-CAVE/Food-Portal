@@ -19,7 +19,7 @@ This project was made for [hackinUTU](https://www.hackinutu.com/) hackathon.
 
 Get the project up and running locally in just 3 easy steps.
 
-1. **Clone** the fork with HTTPS, using your local terminal to a preferred location, and **cd** into the project.
+1. **Clone** the repo with HTTPS, using your local terminal to a preferred location, and **cd** into the project.
 
 ```bash
 git clone https://github.com/hackinutu-CAVE/Food-Portal.git
