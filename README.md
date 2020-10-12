@@ -40,6 +40,12 @@ phpMyAdmin page will be at localhost:5000
 
 3. Visit phpMyAdmin page and create database named 'food-portal'
 
+4. If you are accessing the database through mysql command line interface then use the command :
+```
+mysql -h 127.0.0.1 -P 3406 -u root -p
+```
+   and then enter the password
+
 That's it.
 
 ## Built With
