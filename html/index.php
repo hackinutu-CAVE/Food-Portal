@@ -36,7 +36,9 @@ if (!$userInfo) {
     // User is authenticated
     // See below for how to display user information
     $userInfo = $auth0->getUser();
-    printf( 'Hello %s!', htmlspecialchars( $userInfo['name'] ) );
+    $userEmail = $userInfo['email'];
+    printf( 'Hello %s!Your email is %s!', htmlspecialchars( $userInfo['name'] ), $userEmail );
+    
 }?>
 
 <?php if(!$userInfo): ?>
