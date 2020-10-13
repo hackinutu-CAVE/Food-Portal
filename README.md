@@ -40,6 +40,24 @@ phpMyAdmin page will be at localhost:5000
 
 3. Visit phpMyAdmin page and create database named 'food-portal'
 
+4. If you are accessing the database through mysql command line interface then use the command :
+```
+mysql -h 127.0.0.1 -P 3406 -u root -p
+```
+   and then enter the password 
+   
+5. Create table markers for donor's details :
+```
+CREATE TABLE markers (
+  mid INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+  food_name VARCHAR( 30 ) NOT NULL ,
+  donor_name VARCHAR( 50 ) NOT NULL ,
+  address VARCHAR( 80 ) NOT NULL ,
+  lat FLOAT( 10, 6 ) NOT NULL ,
+  lng FLOAT( 10, 6 ) NOT NULL
+)
+```
+
 That's it.
 
 ## Built With
