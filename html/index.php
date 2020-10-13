@@ -22,7 +22,7 @@ $auth0 = new Auth0([
   'domain' => 'cave421.us.auth0.com',
   'client_id' => 'Sxs0ka70IwMzJJW74Fw3LaAFVDxP7Vbw',
   'client_secret' => '-0K2p4wvZJ7pNhZeM6cyHJXKEqoCvf5GIwccN_VPPzFyo6MlbH5Zq6uo52c22ZCn',
-  'redirect_uri' => 'http://localhost:8080/',
+  'redirect_uri' => 'https://a588cff11602.ngrok.io/',
   'scope' => 'openid profile email',
 ]);
 
@@ -38,4 +38,9 @@ if (!$userInfo) {
     $userInfo = $auth0->getUser();
     printf( 'Hello %s!', htmlspecialchars( $userInfo['name'] ) );
 }?>
-<a href="login.php">Log In</a>
+
+<?php if(!$userInfo): ?>
+    <a href="login.php">Log In</a>
+<?php else: ?>
+  <a href="/logout.php">Logout</a>
+<?php endif ?>
