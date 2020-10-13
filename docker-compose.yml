@@ -9,6 +9,8 @@ services:
       - "./html/:/var/www/html/"
     ports:
       - "8080:80"
+    container_name: foodportal
+
   mysql-server:
     image: mysql:8.0.19
     restart: always
