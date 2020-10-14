@@ -30,5 +30,3 @@
     <input type="button" onclick="window.location='donate.php'" class="Redirect" value="Donate"/>
 </body>
 </html>
-
-
