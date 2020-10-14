@@ -1,3 +1,20 @@
+<?php
+@ob_start();
+session_start();
+require '/var/www/html/vendor/autoload.php';
+use Auth0\SDK\Auth0;
+
+$auth0 = new Auth0([
+    'domain' => 'cave421.us.auth0.com',
+    'client_id' => 'Sxs0ka70IwMzJJW74Fw3LaAFVDxP7Vbw',
+    'client_secret' => '-0K2p4wvZJ7pNhZeM6cyHJXKEqoCvf5GIwccN_VPPzFyo6MlbH5Zq6uo52c22ZCn',
+    'redirect_uri' => 'http://localhost:8080/',
+    'scope' => 'openid profile email',
+]);
+
+$userInfo = $auth0->getUser();
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -29,23 +46,32 @@
   <input type="button" onclick="window.location='home.php'" class="Redirect" value="Home"/>
   <br><br><br>
 
-  <form action="<?php echo $_SERVER["PHP_SELF"] ?>", method="POST">
-   Food name <input type="text" name="food">
-   <br><br>
 
-   Donor name <input type="text" name="donor">
-   <br><br>
+  <?php if(!$userInfo): ?>
+      <!-- <p class="loginhere"> -->
+          You are not logged in<br><br>
+          <a href="/login.php" class="loginhere-link">Log in</a>
+      <!-- </p> -->
 
-   Address <input type="text" name="addr">
-   <br><br>
+  <?php else: ?>
+      <form action="<?php echo $_SERVER["PHP_SELF"] ?>", method="POST">
+      Food name <input type="text" name="food">
+      <br><br>
 
-    <div id="loc">
-      <script> getLocation();</script>
-      <!-- <button name="location" onclick="getLocation()">Location</button> -->
-    </div>
+      <!-- Donor name <input type="text" name="donor">
+      <br><br> -->
 
-    <button name="submit1">Submit</button>
-  </form>
+      Address <input type="text" name="addr">
+      <br><br>
+
+        <div id="loc">
+          <script> getLocation();</script>
+          <!-- <button name="location" onclick="getLocation()">Location</button> -->
+        </div>
+
+        <button name="submit1">Submit</button>
+      </form>
+  <?php endif ?>
  
 
 <?php
@@ -65,9 +91,11 @@
       echo "Connection failed: " . $e->getMessage();
   }
 
+  $userInfo = $auth0->getUser();
+
   if(isset($_POST["submit1"])) {
     $food = $_POST["food"];
-    $donor = $_POST["donor"];
+    $donor = $userInfo['name'];
     $addr = $_POST["addr"];
     $lat  = $_COOKIE['lat'];
     $lng  = $_COOKIE['lng'];
