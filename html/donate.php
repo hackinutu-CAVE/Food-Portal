@@ -44,7 +44,7 @@ $userInfo = $auth0->getUser();
 <body>
 
   <h3>Go to Home page :</h3>
-  <input type="button" onclick="window.location='home.php'" class="Redirect" value="Home"/>
+  <input type="button" onclick="window.location='index.php'" class="Redirect" value="Home"/>
   <br><br><br>
 
 
@@ -59,8 +59,8 @@ $userInfo = $auth0->getUser();
       Food name <input type="text" name="food">
       <br><br>
 
-      Donor name <input type="text" name="donor">
-      <br><br>
+      <!-- Donor name <input type="text" name="donor">
+      <br><br> -->
 
       Address <input type="text" name="addr">
       <br><br>

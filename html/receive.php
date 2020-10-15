@@ -32,7 +32,7 @@
     	          lng: position.coords.longitude,
     	        };
     	        infoWindow.setPosition(pos);
-    	        infoWindow.setContent("Location found.");
+    	        infoWindow.setContent("Your location");
     	        infoWindow.open(map);
     	        map.setCenter(pos);
     	      },
@@ -60,7 +60,7 @@
 </head>
 <body>
 	<h3>Go to Home page :</h3>
-	<input type="button" onclick="window.location='home.php'" class="Redirect" value="Home"/>
+	<input type="button" onclick="window.location='index.php'" class="Redirect" value="Home"/>
 	<br><br><br>
 
 	<!-- <div id="loc">
