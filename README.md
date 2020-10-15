@@ -65,7 +65,7 @@ ALTER TABLE `markers` ADD `donor_email` VARCHAR(50) NOT NULL AFTER `donor_name`,
 
 CREATE TABLE contact(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    NAME VARCHAR(50) NOT NULL,
+    name VARCHAR(50) NOT NULL,
     email VARCHAR(20) NOT NULL,
     message VARCHAR(300) NOT NULL
 )
