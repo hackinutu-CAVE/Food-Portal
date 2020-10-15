@@ -79,11 +79,7 @@ $userInfo = $auth0->getUser();
 
   error_reporting(0);
 
-  //connect to mysql server
-  $host = "mysql-server";
-  $user = "root";
-  $pass = "root";
-  $db = "food-portal";
+  require("phpsqlajax_dbinfo.php");
   try {
       $conn = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

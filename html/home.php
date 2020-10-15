@@ -20,6 +20,6 @@
     <br><br>
 
     <h3>Reveive here :</h3>
-    <input type="button" onclick="window.location='receive.php'" class="Redirect" value="Donate"/>
+    <input type="button" onclick="window.location='receive.php'" class="Redirect" value="Receive"/>
 </body>
 </html>
