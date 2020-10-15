@@ -167,8 +167,10 @@ $userInfo = $auth0->getUser();
 
             <h2>Be A Donor Today</h2>
             <h2>Make Someone's day</h2>
+            <!-- <h2>Random test</h2> -->
             <?php if(!$userInfo): ?>
-              <h2><a href="/login.php" > Click here to donate</a></h2>
+              <!-- <h2>Random test</h2> --><br>
+              <a href="/login.php" > <h1> Click here to donate</h1></a>
                   <!-- <a href="/login.php" >Log in</a> -->
 
             <?php else: ?>
@@ -187,12 +189,24 @@ $userInfo = $auth0->getUser();
 
               <div class="form-group">
                 <!-- <label for="name">Name</label> -->
-                <input type="text" class="form-control py-2" name="food" id="type_fd" placeholder="Enter Food Name">
+                <input type="text" class="form-control py-2" name="food" id="type_fd" placeholder="Food Name">
+              </div>
+              
+              <div class="form-group">
+                <!-- <label for="name">Name</label> -->
+                <input type="text" class="form-control py-2" name="addr" id="address" placeholder="Your Address">
               </div>
 
               <div class="form-group">
-                <!-- <label for="name">Name</label> -->
-                <input type="text" class="form-control py-2" name="addr" id="address" placeholder="Enter your Address">
+              <p><i>At what date and time food will be available:</i></p>
+              <input type="date" name="hdate">
+              <input type="time" name="htime">
+              </div>
+               
+              <div class="form-group">
+              <p><i>By what date and time food will expire:</i></p>
+              <input type="date" name="xdate">
+              <input type="time" name="xtime">
               </div>
               
               <!--<div class="form-group">
@@ -241,13 +255,19 @@ $userInfo = $auth0->getUser();
               if(isset($_POST["submit1"])) {
                 $food = $_POST["food"];
                 $donor = $userInfo['name'];
+                $donoremail = $userInfo['email'];
                 $addr = $_POST["addr"];
+                $date = $_POST["hdate"];
+                $time = $_POST["htime"];
+                $xdate = $_POST["xdate"];
+                $xtime = $_POST["xtime"];
+                $expiry = $_POST["expiry"];
                 $lat  = $_COOKIE['lat'];
                 $lng  = $_COOKIE['lng'];
             
                 try{
                   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                  $sql = "INSERT INTO `markers`(food_name, donor_name, address, lat, lng)  VALUES ('$food', '$donor', '$addr', '$lat', '$lng')";
+                  $sql = "INSERT INTO `markers`(food_name, donor_name, donor_email, address, date, time, food_expiry_date, food_expiry_time, lat, lng)  VALUES ('$food', '$donor', '$donoremail', '$addr', '$date', '$time', '$xdate', '$xtime', '$lat', '$lng')";
                   $conn->exec($sql);
                 }
                 catch(PDOException $e){
