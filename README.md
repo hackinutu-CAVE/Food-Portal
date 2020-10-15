@@ -60,6 +60,15 @@ CREATE TABLE markers (
 
 That's it.
 
+## How to solve any php composer issues
+```
+docker exec -it foodportal bash
+```
+```
+php composer install
+```
+
+
 ## Built With
 
 * [php:7.4.3-apache](https://hub.docker.com/layers/php/library/php/7.4.3-apache/images/sha256-604c8dd36d734deb93193d79daa09ae0bd3ca05ea51deb909ffb218e34fa5cd5?context=explore) - This image contains Debian's Apache httpd in conjunction with PHP (as mod_php) and uses mpm_prefork by default
