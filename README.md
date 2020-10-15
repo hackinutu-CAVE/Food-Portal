@@ -30,7 +30,7 @@ cd Food-Portal
 
 2. Run docker-compose
 ```
-docker-compose up -d
+docker-compose up -d --build
 ```
 
 Website Home page will be at localhost:8080
@@ -60,7 +60,7 @@ CREATE TABLE markers (
 
 That's it.
 
-## How to solve any php composer issues
+## To solve blank screen error:
 ```
 docker exec -it foodportal bash
 ```
