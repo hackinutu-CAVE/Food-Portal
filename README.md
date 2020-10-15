@@ -63,8 +63,12 @@ ALTER TABLE `markers` ADD `donor_email` VARCHAR(50) NOT NULL AFTER `donor_name`,
    ADD `food_expiry_date` VARCHAR(20) NOT NULL AFTER `time`,
    ADD `food_expiry_time` VARCHAR(10) NOT NULL AFTER `food_expiry_date`,
 
-
-
+CREATE TABLE contact(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    email VARCHAR(20) NOT NULL,
+    message VARCHAR(300) NOT NULL
+)
 ```
 
 That's it.
