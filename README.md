@@ -30,7 +30,7 @@ cd Food-Portal
 
 2. Run docker-compose
 ```
-docker-compose up -d
+docker-compose up -d --build
 ```
 
 Website Home page will be at localhost:8080
@@ -56,11 +56,20 @@ CREATE TABLE markers (
   lat FLOAT( 10, 6 ) NOT NULL ,
   lng FLOAT( 10, 6 ) NOT NULL
 )
+
+ALTER TABLE `markers` ADD `donor_email` VARCHAR(50) NOT NULL AFTER `donor_name`,
+   ADD `date` VARCHAR(20) NOT NULL AFTER `address`,
+   ADD `time` VARCHAR(10) NOT NULL AFTER `date`,
+   ADD `food_expiry_date` VARCHAR(20) NOT NULL AFTER `time`,
+   ADD `food_expiry_time` VARCHAR(10) NOT NULL AFTER `food_expiry_date`,
+
+
+
 ```
 
 That's it.
 
-## How to solve any php composer issues
+## To solve blank screen error:
 ```
 docker exec -it foodportal bash
 ```
