@@ -56,6 +56,14 @@ CREATE TABLE markers (
   lat FLOAT( 10, 6 ) NOT NULL ,
   lng FLOAT( 10, 6 ) NOT NULL
 )
+
+ALTER TABLE `markers` ADD `donor_email` VARCHAR(50) NOT NULL AFTER `donor_name`,
+   ADD `date` VARCHAR(10) NOT NULL AFTER `address`,
+   ADD `time` VARCHAR(10) NOT NULL AFTER `date`,
+   ADD `food_expiry` VARCHAR(50) NOT NULL AFTER `time`;
+
+
+
 ```
 
 That's it.
