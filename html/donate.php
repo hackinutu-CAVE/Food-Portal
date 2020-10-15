@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 @ob_start();
 session_start();
 require '/var/www/html/vendor/autoload.php';
@@ -58,8 +59,8 @@ $userInfo = $auth0->getUser();
       Food name <input type="text" name="food">
       <br><br>
 
-      <!-- Donor name <input type="text" name="donor">
-      <br><br> -->
+      Donor name <input type="text" name="donor">
+      <br><br>
 
       Address <input type="text" name="addr">
       <br><br>
