@@ -58,9 +58,10 @@ CREATE TABLE markers (
 )
 
 ALTER TABLE `markers` ADD `donor_email` VARCHAR(50) NOT NULL AFTER `donor_name`,
-   ADD `date` VARCHAR(10) NOT NULL AFTER `address`,
+   ADD `date` VARCHAR(20) NOT NULL AFTER `address`,
    ADD `time` VARCHAR(10) NOT NULL AFTER `date`,
-   ADD `food_expiry` VARCHAR(50) NOT NULL AFTER `time`;
+   ADD `food_expiry_date` VARCHAR(20) NOT NULL AFTER `time`,
+   ADD `food_expiry_time` VARCHAR(10) NOT NULL AFTER `food_expiry_date`,
 
 
 
