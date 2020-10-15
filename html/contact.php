@@ -9,7 +9,7 @@ $auth0 = new Auth0([
     'domain' => 'cave421.us.auth0.com',
     'client_id' => 'Sxs0ka70IwMzJJW74Fw3LaAFVDxP7Vbw',
     'client_secret' => '-0K2p4wvZJ7pNhZeM6cyHJXKEqoCvf5GIwccN_VPPzFyo6MlbH5Zq6uo52c22ZCn',
-    'redirect_uri' => 'http://localhost:8080/',
+    'redirect_uri' => 'ngrokurl',
     'scope' => 'openid profile email',
 ]);
 
@@ -105,24 +105,62 @@ $userInfo = $auth0->getUser();
     <div class="container">
       <div class="row block-9">
         <div class="col-md-6 pr-md-5">
-          <form action="#">
+          <form action="<?php echo $_SERVER["PHP_SELF"] ?>", method="POST">
             <div class="form-group">
-              <input type="text" class="form-control px-3 py-3" placeholder="Your Name">
+              <input type="text" id="Name" name="Name"  class="form-control px-3 py-3" placeholder="Your Name" required>
             </div>
             <div class="form-group">
-              <input type="text" class="form-control px-3 py-3" placeholder="Your Email">
+              <input type="text" id="Email" name="Email" class="form-control px-3 py-3" placeholder="Your Email" required>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <input type="text" class="form-control px-3 py-3" placeholder="Subject">
+            </div> -->
+            <div class="form-group">
+              <textarea name="" id="" cols="30" rows="7" id="Message" name="Message" class="form-control px-3 py-3" placeholder="Message" required></textarea>
             </div>
             <div class="form-group">
-              <textarea name="" id="" cols="30" rows="7" class="form-control px-3 py-3" placeholder="Message"></textarea>
-            </div>
-            <div class="form-group">
-              <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+              <input type="submit" name="submit1" value="Send Message" class="btn btn-primary py-3 px-5">
             </div>
           </form>
-        
+          
+          <?php
+
+              // error_reporting(0);
+
+              //connect to mysql server
+              $host = "mysql-server";
+              $user = "root";
+              $pass = "root";
+              $db = "food-portal";
+              try {
+                  $conn = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
+                  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+              }
+              catch(PDOException $e) {
+                  echo "Connection failed: " . $e->getMessage();
+              }
+
+              $userInfo = $auth0->getUser();
+
+              if(isset($_POST["submit1"])) {
+                $name = $_POST["Name"];
+                $email = $_POST["Email"];
+                $message = $_POST["Message"];
+                
+            
+                try{
+                  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                  $sql = "INSERT INTO `contact`(name, email, message)  VALUES ('$name', '$email', '$message')";
+                  $conn->exec($sql);
+                }
+                catch(PDOException $e){
+                  echo $e->getMessage();
+                }
+                $conn = null;
+              }
+
+            ?>
+
         </div>
 
         <div class="col-md-6" id="map"></div>
