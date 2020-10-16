@@ -18,64 +18,113 @@ $userInfo = $auth0->getUser();
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>FOOD CAVE </title>
+<head>
+  <title>FOOD CAVE </title>
 
-    <!-- Add location script -->
-    <script>
-    var x = document.getElementById("loc");
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    function getLocation() {
+  <link href="https://fonts.googleapis.com/css?family=Overpass:300,400,500|Dosis:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="css/magnific-popup.css">
+  <link rel="stylesheet" href="css/aos.css">
+  <link rel="stylesheet" href="css/ionicons.min.css">
+  <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="css/jquery.timepicker.css">
+  <link rel="stylesheet" href="css/flaticon.css">
+  <link rel="stylesheet" href="css/icomoon.css">
+
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    #map {
+      width: 90%;
+      height: 600px;
+      background-color: grey;
+      margin: 5% auto;
+    }
+  </style>
+  <style type="text/css">
+    table,tr,td,th{
+      text-align: center;
+      border-collapse: collapse;
+      font-family: ;
+      border-top: 0px;
+      border-left: 0px;
+      border-right: 0px;
+      font-size: 20px;
+    }
+    th{
+      font-weight: 10;
+    }
+    td,th{
+      width: 170px;
+      height: 40px;
+      padding: 8px;
+      text-align: left;
+      border-bottom: 2px solid #a0a0a0;
+    }
+    tr:hover {
+      background-color: #f5f5f5;
+    }
+    th{
+      background: #f7ca44; 
+      color: #ffffff;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+  </style>
+
+  <script>
+    let map, infoWindow;
+
+    function initMap() {
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 19.2183, lng: 72.9781 },
+        zoom: 6,
+      });
+      infoWindow = new google.maps.InfoWindow();
+
+      // Try HTML5 geolocation.
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-      } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            };
+            var marker = new google.maps.Marker({position: pos, map: map});
+          },
+          () => {
+            handleLocationError(true, infoWindow, map.getCenter());
+          }
+          );
+      } 
+      else {
+        // Browser doesn't support Geolocation
+        handleLocationError(false, infoWindow, map.getCenter());
       }
     }
 
-    function showPosition(position) {
-      var lat = position.coords.latitude;
-      var lng = position.coords.longitude;
-      // alert(lat+","+lng);
-      document.cookie = "lat = " + lat;
-      document.cookie = "lng = " + lng;
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+      infoWindow.setPosition(pos);
+      infoWindow.setContent(
+        browserHasGeolocation
+        ? "Error: The Geolocation service failed."
+        : "Error: Your browser doesn't support geolocation."
+        );
+      infoWindow.open(map);
     }
   </script>
+  <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsVoY4zW3LEvh1FYV00kTm2LH71ArmzOs&callback=initMap"></script>
+</head>
+<body>
 
-    <!-- End location script -->
-
-    <link rel="icon" type="image/png" href="images/logo.png">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <link href="https://fonts.googleapis.com/css?family=Overpass:300,400,500|Dosis:400,700" rel="stylesheet">
-    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/aos.css">
-    <link rel="stylesheet" href="css/ionicons.min.css">
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="css/jquery.timepicker.css">
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/icomoon.css">
-
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/style.css">
-
-    <style>
-      #map {
-        width: 90%;
-        height: 600px;
-        background-color: grey;
-        margin: 5% auto;
-      }
-    </style>
-
-  </head>
-  <body>
-    
   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
       <a class="navbar-brand" href="index.php">FOOD CAVE</a>
@@ -85,16 +134,16 @@ $userInfo = $auth0->getUser();
 
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-        <li class="nav-item active"><a href="index.php" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
           <li class="nav-item"><a href="donate.php" class="nav-link">Donate</a></li>
-          <li class="nav-item"><a href="receive.php" class="nav-link">Receive</a></li>
+          <li class="nav-item active"><a href="receive.php" class="nav-link">Receive</a></li>
           <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
         </ul>
       </div>
     </div>
   </nav>
   <!-- END nav -->
-  
+
   <div class="block-31" style="position: relative;">
     <div class="owl-carousel loop-block-31 ">
       <div class="block-30 block-30-sm item" style="background-image: url('images/Food-Waste.png');" data-stellar-background-ratio="0.5">
@@ -106,25 +155,16 @@ $userInfo = $auth0->getUser();
           </div>
         </div>
       </div>
-      
+
     </div>
   </div>
 
-  <div>
-    <h1 style="text-align: center; margin-top: 5%">Search location</h1>
-      <div id="map"></div>
-      <script>
-        function initMap() {
-          var thane = {lat:19.2183, lng:72.9781};
-          var map = new google.maps.Map(document.getElementById('map'), {zoom:4, center:thane});
-          var marker = new google.maps.Marker({position:thane, map:map});
-        }
-      </script>
-      <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsVoY4zW3LEvh1FYV00kTm2LH71ArmzOs&callback=initMap"></script>
-  </div>
+  <h1 style="text-align: center; margin-top: 5%">Search location</h1>
+  <div id="map"></div>
+
 
   <div class="featured-section overlay-color-2" style="background-image: url('images/bg_2.jpg');">
-    
+
     <div class="container">
       <div class="row">
 
@@ -135,23 +175,23 @@ $userInfo = $auth0->getUser();
         <div class="col-md-6 pl-md-5">
 
           <div class="form-volunteer">
-          <?php if(!$userInfo): ?>
-              <h2><a href="/login.php" > Click here to donate</a></h2>
-                  <!-- <a href="/login.php" >Log in</a> -->
+            <?php if(!$userInfo): ?>
+              <a href="/login.php" > <h2> Click here to receive</h2></a>
+              <!-- <a href="/login.php" >Log in</a> -->
 
-          <?php else: ?>
-            <h2>Details</h2>
-            <form action="<?php echo $_SERVER["PHP_SELF"] ?>", method="POST">
-            
-              <!-- Location Script -->
-              <div id="loc">
-                <script> getLocation();</script>
-              </div>
+              <?php else: ?>
+                <h2>Details</h2>
+                <form action="<?php echo $_SERVER["PHP_SELF"] ?>", method="POST">
 
-              <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control py-2" id="name" placeholder="Enter your name">
-              </div>
+                  <!-- Location Script -->
+                  <div id="loc">
+                    <script> getLocation();</script>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control py-2" id="name" placeholder="Enter your name">
+                  </div>
               <!-- <div class="form-group">
                 <label for="email">Email</label>
                 <input type="text" class="form-control py-2" id="email" placeholder="Enter your email">
@@ -166,6 +206,7 @@ $userInfo = $auth0->getUser();
             </form>
 
           <?php endif ?>
+
 
             <?php
 
