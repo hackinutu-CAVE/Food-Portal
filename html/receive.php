@@ -293,6 +293,27 @@ $userInfo = $auth0->getUser();
       $ind = $ind + 1;
     }
     ?>
+    <form action="<?php echo $_SERVER["PHP_SELF"] ?>", method="POST">
+        Enter ID of food you want to receive :<input type="text" name="foodid">
+        <br><br>
+
+        <button name="submit2">Submit</button>
+    </form>
+
+    <?php
+    if(isset($_POST["submit2"])) {
+      $id = $_POST["foodid"];
+      try{
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "DELETE FROM markers WHERE mid='$id'";
+        $conn->exec($sql);
+      }
+      catch(PDOException $e){
+        echo $e->getMessage();
+      }
+      header("Refresh:0");
+    }
+    ?>
   </section>
 
   <h1 style="text-align: center; margin-top: 5%">Search location</h1>

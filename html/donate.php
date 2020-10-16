@@ -267,7 +267,7 @@ $userInfo = $auth0->getUser();
             
                 try{
                   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                  $sql = "INSERT INTO `markers`(food_name, donor_name, donor_email, address, date, time, food_expiry_date, food_expiry_time, lat, lng)  VALUES ('$food', '$donor', '$donoremail', '$addr', '$date', '$time', '$xdate', '$xtime', '$lat', '$lng')";
+                  $sql = "INSERT INTO `markers`(food_name, donor_name, donor_email, address, cdate, ctime, food_expiry_date, food_expiry_time, lat, lng)  VALUES ('$food', '$donor', '$donoremail', '$addr', '$date', '$time', '$xdate', '$xtime', '$lat', '$lng')";
                   $conn->exec($sql);
                 }
                 catch(PDOException $e){
