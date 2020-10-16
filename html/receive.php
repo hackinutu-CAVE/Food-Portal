@@ -42,89 +42,154 @@ $userInfo = $auth0->getUser();
   <link rel="stylesheet" href="css/style.css">
 
   <style>
-    #map {
-      width: 90%;
-      height: 600px;
-      background-color: grey;
-      margin: 5% auto;
-    }
-  </style>
-  <style type="text/css">
-    table,tr,td,th{
-      text-align: center;
-      border-collapse: collapse;
-      font-family: ;
-      border-top: 0px;
-      border-left: 0px;
-      border-right: 0px;
-      font-size: 20px;
-    }
-    th{
-      font-weight: 10;
-    }
-    td,th{
-      width: 170px;
-      height: 40px;
-      padding: 8px;
-      text-align: left;
-      border-bottom: 2px solid #a0a0a0;
-    }
-    tr:hover {
-      background-color: #f5f5f5;
-    }
-    th{
-      background: #f7ca44; 
-      color: #ffffff;
-      font-weight: 500;
-      text-transform: uppercase;
-    }
-  </style>
+   #map {
 
-  <script>
-    let map, infoWindow;
+     width: 90%;
+     height: 600px;
+     background-color: grey;
+     margin: 0 auto;
+   }
+   #table1{
+     text-align: center;
+   }
+   table,tr,td,th{
+     text-align: center;
+     border-collapse: collapse;
+     font-family: ;
+     border-top: 0px;
+     border-left: 0px;
+     border-right: 0px;
+     font-size: 20px;
+   }
+   th{
+     font-weight: 10;
+   }
+   td,th{
+     width: 170px;
+     height: 40px;
+     padding: 8px;
+     text-align: left;
+     border-bottom: 2px solid #a0a0a0;
+   }
+   tr:hover {
+     background-color: #f5f5f5;
+   }
+   th{
+     background: #f7ca44; 
+     color: #ffffff;
+     font-weight: 500;
+     text-transform: uppercase;
+   }
+ </style>
 
-    function initMap() {
-      map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 19.2183, lng: 72.9781 },
-        zoom: 6,
-      });
-      infoWindow = new google.maps.InfoWindow();
+ <script>
+  let map, infoWindow;
 
-      // Try HTML5 geolocation.
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-            };
-            var marker = new google.maps.Marker({position: pos, map: map});
-          },
-          () => {
-            handleLocationError(true, infoWindow, map.getCenter());
-          }
-          );
-      } 
-      else {
-        // Browser doesn't support Geolocation
-        handleLocationError(false, infoWindow, map.getCenter());
-      }
+  function initMap() {
+    map = new google.maps.Map(document.getElementById("map"), {
+      center: { lat: 19.2183, lng: 72.9781 },
+      zoom: 6,
+    });
+    infoWindow = new google.maps.InfoWindow();
+
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+          var user_marker = new google.maps.Marker({position: pos, map: map});
+          user_marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+        },
+        () => {
+          handleLocationError(true, infoWindow, map.getCenter());
+        }
+      );
+    } 
+    else {
+      // Browser doesn't support Geolocation
+      handleLocationError(false, infoWindow, map.getCenter());
     }
 
-    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-      infoWindow.setPosition(pos);
-      infoWindow.setContent(
-        browserHasGeolocation
-        ? "Error: The Geolocation service failed."
-        : "Error: Your browser doesn't support geolocation."
-        );
-      infoWindow.open(map);
-    }
+    const pos1 = {
+      lat: 19.3,
+      lng: 73.0,
+    };
+    var marker1 = new google.maps.Marker({position: pos1, map: map});
+    marker1.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+
+    const pos2 = {
+      lat: 19.1,
+      lng: 73.189,
+    };
+    var marker2 = new google.maps.Marker({position: pos2, map: map});
+    marker2.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+
+    const pos3 = {
+      lat: 18.987,
+      lng: 73.189,
+    };
+    var marker3 = new google.maps.Marker({position: pos3, map: map});
+    marker3.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+
+    const pos4 = {
+      lat: 19.98465,
+      lng: 73.65468,
+    };
+    var marker4 = new google.maps.Marker({position: pos4, map: map});
+    marker4.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+
+    const pos5 = {
+      lat: 19.461,
+      lng: 73.01338,
+    };
+    var marker5 = new google.maps.Marker({position: pos5, map: map});
+    marker5.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+
+    const pos6 = {
+      lat: 19.98465,
+      lng: 73.654,
+    };
+    var marker6 = new google.maps.Marker({position: pos6, map: map});
+    marker6.setIcon('http://maps.google.com/mapfiles/ms/icons/purple-dot.png');
+
+    const pos7 = {
+      lat: 19.1354,
+      lng: 73.7465,
+    };
+    var marker7 = new google.maps.Marker({position: pos7, map: map});
+    marker7.setIcon('http://maps.google.com/mapfiles/ms/icons/purple-dot.png');
+
+    const pos8 = {
+      lat: 19.32168,
+      lng: 73.9451,
+    };
+    var marker8 = new google.maps.Marker({position: pos8, map: map});
+    marker8.setIcon('http://maps.google.com/mapfiles/ms/icons/purple-dot.png');
+
+    const pos9 = {
+      lat: 19.354,
+      lng: 73.789465,
+    };
+    var marker9 = new google.maps.Marker({position: pos9, map: map});
+    marker9.setIcon('http://maps.google.com/mapfiles/ms/icons/purple-dot.png');
+  }
+
+  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    infoWindow.setPosition(pos);
+    infoWindow.setContent(
+      browserHasGeolocation
+      ? "Error: The Geolocation service failed."
+      : "Error: Your browser doesn't support geolocation."
+      );
+    infoWindow.open(map);
+  }
   </script>
   <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsVoY4zW3LEvh1FYV00kTm2LH71ArmzOs&callback=initMap"></script>
 </head>
 <body>
-
   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
       <a class="navbar-brand" href="index.php">FOOD CAVE</a>
@@ -158,12 +223,121 @@ $userInfo = $auth0->getUser();
 
     </div>
   </div>
+  
+  
+
+  <section id="table1">
+    <?php
+    error_reporting(0);
+    $host = "mysql-server";
+    $user = "root";
+    $pass = "root";
+    $db = "food-portal";
+
+    function parseToXML($htmlStr)
+    {
+      $xmlStr=str_replace('<','&lt;',$htmlStr);
+      $xmlStr=str_replace('>','&gt;',$xmlStr);
+      $xmlStr=str_replace('"','&quot;',$xmlStr);
+      $xmlStr=str_replace("'",'&#39;',$xmlStr);
+      $xmlStr=str_replace("&",'&amp;',$xmlStr);
+      return $xmlStr;
+    }
+
+    try {
+      $conn = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    }
+    catch(PDOException $e) {
+      echo "Connection failed: " . $e->getMessage();
+    }
+
+      // Select all the rows in the markers table
+    try{
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $sql = $conn->prepare("SELECT * FROM markers");
+      $sql->execute();   
+    }
+    catch(PDOException $e){
+      echo $e->getMessage();
+    }
+
+    echo '<table id="table2" border="1" cellspacing="2" cellpadding="2"> 
+    <tr> 
+    <td> <font face="Arial">ID</font> </td> 
+    <td> <font face="Arial">Food Name</font> </td> 
+    <td> <font face="Arial">Donor Name</font> </td> 
+    <td> <font face="Arial">Address</font> </td>
+    <td> <font face="Arial">Available Date</font> </td> 
+    <td> <font face="Arial">Available Time</font> </td>
+    <td> <font face="Arial">Expiry Date</font> </td> 
+    <td> <font face="Arial">Expiry Time</font> </td>
+    <!--
+    <td> <font face="Arial">Latitude</font> </td>
+    <td> <font face="Arial">Longitude</font> </td>  
+    -->
+    </tr>';
+
+
+    $ind=0;
+    foreach ($sql->fetchAll(PDO::FETCH_ASSOC) as $row){
+      $field1name = $row["mid"];
+      $field2name = $row["food_name"];
+      $field3name = $row["donor_name"];
+      $field4name = $row["address"];
+      $field5name = $row["date"];
+      $field6name = $row["time"];
+      $field7name = $row["food_expiry_date"];
+      $field8name = $row["food_expiry_time"];
+      
+      // $field5name = $row["lat"];
+      // $field6name = $row["lng"]; 
+
+      echo '<tr> 
+      <td>'.$field1name.'</td> 
+      <td>'.$field2name.'</td> 
+      <td>'.$field3name.'</td> 
+      <td>'.$field4name.'</td>
+      <td>'.$field5name.'</td> 
+      <td>'.$field6name.'</td> 
+      <td>'.$field7name.'</td> 
+      <td>'.$field8name.'</td> 
+      <!--
+      // <td>'.$field5name.'</td>
+      // <td>'.$field6name.'</td> 
+      -->
+      </tr>';
+      $ind = $ind + 1;
+    }
+    ?>
+    <!-- <form action="<?php echo $_SERVER["PHP_SELF"] ?>", method="POST">
+        Enter ID of food you want to receive :<input type="text" name="foodid">
+        <br><br>
+
+        <button name="submit2">Submit</button>
+    </form> -->
+
+    <?php
+    if(isset($_POST["submit2"])) {
+      $id = $_POST["foodid"];
+      try{
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "DELETE FROM markers WHERE mid='$id'";
+        $conn->exec($sql);
+      }
+      catch(PDOException $e){
+        echo $e->getMessage();
+      }
+      header("Refresh:0");
+    }
+    ?>
+  </section>
 
   <h1 style="text-align: center; margin-top: 5%">Search location</h1>
   <div id="map"></div>
 
 
-  <div class="featured-section overlay-color-2" style="background-image: url('images/bg_2.jpg');">
+  <div id="xyz" class="featured-section overlay-color-2" style="background-image: url('images/bg_2.jpg');">
 
     <div class="container">
       <div class="row">
@@ -176,7 +350,7 @@ $userInfo = $auth0->getUser();
 
           <div class="form-volunteer">
             <?php if(!$userInfo): ?>
-              <a href="/login.php" > <h2> Click here to receive</h2></a>
+              <a href="/login.php" > <h2> Click here to donate</h2></a>
               <!-- <a href="/login.php" >Log in</a> -->
 
               <?php else: ?>
@@ -189,8 +363,8 @@ $userInfo = $auth0->getUser();
                   </div>
 
                   <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control py-2" id="name" placeholder="Enter your name">
+                    <label for="name">Enter ID of food</label>
+                    <input type="text" name="foodid" class="form-control py-2" id="name" placeholder="ID">
                   </div>
               <!-- <div class="form-group">
                 <label for="email">Email</label>
@@ -207,53 +381,47 @@ $userInfo = $auth0->getUser();
 
           <?php endif ?>
 
+          <?php
 
-            <?php
-
-              error_reporting(0);
+          error_reporting(0);
 
               //connect to mysql server
-              $host = "mysql-server";
-              $user = "root";
-              $pass = "root";
-              $db = "food-portal";
-              try {
-                  $conn = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
-                  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-              }
-              catch(PDOException $e) {
-                  echo "Connection failed: " . $e->getMessage();
-              }
+          $host = "mysql-server";
+          $user = "root";
+          $pass = "root";
+          $db = "food-portal";
+          try {
+            $conn = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          }
+          catch(PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+          }
 
-              $userInfo = $auth0->getUser();
+          $userInfo = $auth0->getUser();
 
-              if(isset($_POST["submit1"])) {
-                $food = $_POST["food"];
-                $donor = $userInfo['name'];
-                $addr = $_POST["addr"];
-                $lat  = $_COOKIE['lat'];
-                $lng  = $_COOKIE['lng'];
-            
-                try{
-                  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                  $sql = "INSERT INTO `markers`(food_name, donor_name, address, lat, lng)  VALUES ('$food', '$donor', '$addr', '$lat', '$lng')";
-                  $conn->exec($sql);
-                }
-                catch(PDOException $e){
-                  echo $e->getMessage();
-                }
-                $conn = null;
-              }
+          if(isset($_POST["submit1"])) {
+            $id = $_POST["foodid"];
+            try{
+              $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+              $sql = "DELETE FROM markers WHERE mid='$id'";
+              $conn->exec($sql);
+            }
+            catch(PDOException $e){
+              echo $e->getMessage();
+            }
+            header("Refresh:0");
+          }
 
-            ?>
-            
-          </div>
+          ?>
+
         </div>
-        
       </div>
-    </div>
 
-  </div> <!-- .featured-donate -->
+    </div>
+  </div>
+
+</div> <!-- .featured-donate -->
 
   <!-- <footer class="footer">
     <div class="container">
@@ -286,7 +454,7 @@ $userInfo = $auth0->getUser();
     </div>
   </footer> -->
 
-    <footer class="footer">
+  <!-- <footer class="footer">
     <div class="container">
       <div class="row mb-5">
 
@@ -297,20 +465,25 @@ $userInfo = $auth0->getUser();
         <div class="col-md-6 col-lg-6">
           <div class="block-23">
             <h3 class="heading-section">Get Connected</h3>
-              <ul>
-                <li><span class="icon icon-map-marker"></span><span class="text">123, Regular Address,India.</span></li>
-                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+91 1234567890</span></a></li>
-                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">foodcave@email.com</span></a></li>
-              </ul>
-            </div>
+            <ul>
+              <li><span class="icon icon-map-marker"></span><span class="text">123, Regular Address,India.</span></li>
+              <li><a href="#"><span class="icon icon-phone"></span><span class="text">+91 1234567890</span></a></li>
+              <li><a href="#"><span class="icon icon-envelope"></span><span class="text">foodcave@email.com</span></a></li>
+            </ul>
+          </div>
         </div>
 
       </div>
     </div>
-  </footer>
+  </footer> -->
 
   <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+  <div id="ftco-loader" class="show fullscreen">
+    <svg class="circular" width="48px" height="48px">
+      <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/>
+      <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/>
+    </svg>
+  </div>
 
 
   <script src="js/jquery.min.js"></script>
@@ -328,9 +501,8 @@ $userInfo = $auth0->getUser();
   
   <script src="js/aos.js"></script>
   <script src="js/jquery.animateNumber.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="js/google-map.js"></script>
-  <script src="js/main.js"></script>
-    
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="js/google-map.js"></script> -->
+    <script src="js/main.js"></script>
   </body>
-</html>
+  </html>
