@@ -94,6 +94,36 @@ $userInfo = $auth0->getUser();
       margin: 5% auto;
     }
   </style>
+  <style type="text/css">
+    table,tr,td,th{
+      text-align: center;
+      border-collapse: collapse;
+      font-family: ;
+      border-top: 0px;
+      border-left: 0px;
+      border-right: 0px;
+      font-size: 20px;
+    }
+    th{
+      font-weight: 10;
+    }
+    td,th{
+      width: 170px;
+      height: 40px;
+      padding: 8px;
+      text-align: left;
+      border-bottom: 2px solid #a0a0a0;
+    }
+    tr:hover {
+      background-color: #f5f5f5;
+    }
+    th{
+      background: #f7ca44; 
+      color: #ffffff;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+  </style>
 </head>
 <body>
 
