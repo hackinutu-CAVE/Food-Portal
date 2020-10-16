@@ -21,51 +21,6 @@ $userInfo = $auth0->getUser();
 <head>
   <title>FOOD CAVE </title>
 
-  <script>
-    let map, infoWindow;
-
-    function initMap() {
-      map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 19.2183, lng: 72.9781 },
-        zoom: 6,
-      });
-      infoWindow = new google.maps.InfoWindow();
-
-      // Try HTML5 geolocation.
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-            };
-            var marker = new google.maps.Marker({position: pos, map: map});
-          },
-          () => {
-            handleLocationError(true, infoWindow, map.getCenter());
-          }
-          );
-      } 
-      else {
-        // Browser doesn't support Geolocation
-        handleLocationError(false, infoWindow, map.getCenter());
-      }
-    }
-
-    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-      infoWindow.setPosition(pos);
-      infoWindow.setContent(
-        browserHasGeolocation
-        ? "Error: The Geolocation service failed."
-        : "Error: Your browser doesn't support geolocation."
-        );
-      infoWindow.open(map);
-    }
-  </script>
-  <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsVoY4zW3LEvh1FYV00kTm2LH71ArmzOs&callback=initMap"></script>
-
-
-
   <link rel="icon" type="image/png" href="images/logo.png">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -124,6 +79,49 @@ $userInfo = $auth0->getUser();
       text-transform: uppercase;
     }
   </style>
+
+  <script>
+    let map, infoWindow;
+
+    function initMap() {
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 19.2183, lng: 72.9781 },
+        zoom: 6,
+      });
+      infoWindow = new google.maps.InfoWindow();
+
+      // Try HTML5 geolocation.
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            };
+            var marker = new google.maps.Marker({position: pos, map: map});
+          },
+          () => {
+            handleLocationError(true, infoWindow, map.getCenter());
+          }
+          );
+      } 
+      else {
+        // Browser doesn't support Geolocation
+        handleLocationError(false, infoWindow, map.getCenter());
+      }
+    }
+
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+      infoWindow.setPosition(pos);
+      infoWindow.setContent(
+        browserHasGeolocation
+        ? "Error: The Geolocation service failed."
+        : "Error: Your browser doesn't support geolocation."
+        );
+      infoWindow.open(map);
+    }
+  </script>
+  <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsVoY4zW3LEvh1FYV00kTm2LH71ArmzOs&callback=initMap"></script>
 </head>
 <body>
 
