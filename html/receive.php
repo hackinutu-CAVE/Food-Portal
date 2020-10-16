@@ -6,11 +6,11 @@ require '/var/www/html/vendor/autoload.php';
 use Auth0\SDK\Auth0;
 
 $auth0 = new Auth0([
-    'domain' => 'cave421.us.auth0.com',
-    'client_id' => 'Sxs0ka70IwMzJJW74Fw3LaAFVDxP7Vbw',
-    'client_secret' => '-0K2p4wvZJ7pNhZeM6cyHJXKEqoCvf5GIwccN_VPPzFyo6MlbH5Zq6uo52c22ZCn',
-    'redirect_uri' => 'http://localhost:8080/',
-    'scope' => 'openid profile email',
+  'domain' => 'cave421.us.auth0.com',
+  'client_id' => 'Sxs0ka70IwMzJJW74Fw3LaAFVDxP7Vbw',
+  'client_secret' => '-0K2p4wvZJ7pNhZeM6cyHJXKEqoCvf5GIwccN_VPPzFyo6MlbH5Zq6uo52c22ZCn',
+  'redirect_uri' => 'http://localhost:8080/',
+  'scope' => 'openid profile email',
 ]);
 
 $userInfo = $auth0->getUser();
@@ -18,64 +18,85 @@ $userInfo = $auth0->getUser();
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>FOOD CAVE </title>
+<head>
+  <title>FOOD CAVE </title>
 
-    <!-- Add location script -->
-    <script>
-    var x = document.getElementById("loc");
+  <script>
+    let map, infoWindow;
 
-    function getLocation() {
+    function initMap() {
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 19.2183, lng: 72.9781 },
+        zoom: 6,
+      });
+      infoWindow = new google.maps.InfoWindow();
+
+      // Try HTML5 geolocation.
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-      } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            };
+            var marker = new google.maps.Marker({position: pos, map: map});
+          },
+          () => {
+            handleLocationError(true, infoWindow, map.getCenter());
+          }
+          );
+      } 
+      else {
+        // Browser doesn't support Geolocation
+        handleLocationError(false, infoWindow, map.getCenter());
       }
     }
 
-    function showPosition(position) {
-      var lat = position.coords.latitude;
-      var lng = position.coords.longitude;
-      // alert(lat+","+lng);
-      document.cookie = "lat = " + lat;
-      document.cookie = "lng = " + lng;
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+      infoWindow.setPosition(pos);
+      infoWindow.setContent(
+        browserHasGeolocation
+        ? "Error: The Geolocation service failed."
+        : "Error: Your browser doesn't support geolocation."
+        );
+      infoWindow.open(map);
     }
   </script>
+  <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsVoY4zW3LEvh1FYV00kTm2LH71ArmzOs&callback=initMap"></script>
 
-    <!-- End location script -->
 
-    <link rel="icon" type="image/png" href="images/logo.png">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <link href="https://fonts.googleapis.com/css?family=Overpass:300,400,500|Dosis:400,700" rel="stylesheet">
-    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/aos.css">
-    <link rel="stylesheet" href="css/ionicons.min.css">
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="css/jquery.timepicker.css">
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/icomoon.css">
 
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <style>
-      #map {
-        width: 90%;
-        height: 600px;
-        background-color: grey;
-        margin: 5% auto;
-      }
-    </style>
+  <link href="https://fonts.googleapis.com/css?family=Overpass:300,400,500|Dosis:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="css/magnific-popup.css">
+  <link rel="stylesheet" href="css/aos.css">
+  <link rel="stylesheet" href="css/ionicons.min.css">
+  <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="css/jquery.timepicker.css">
+  <link rel="stylesheet" href="css/flaticon.css">
+  <link rel="stylesheet" href="css/icomoon.css">
 
-  </head>
-  <body>
-    
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    #map {
+      width: 90%;
+      height: 600px;
+      background-color: grey;
+      margin: 5% auto;
+    }
+  </style>
+</head>
+<body>
+
   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
       <a class="navbar-brand" href="index.php">FOOD CAVE</a>
@@ -85,16 +106,16 @@ $userInfo = $auth0->getUser();
 
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-        <li class="nav-item active"><a href="index.php" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
           <li class="nav-item"><a href="donate.php" class="nav-link">Donate</a></li>
-          <li class="nav-item"><a href="receive.php" class="nav-link">Receive</a></li>
+          <li class="nav-item active"><a href="receive.php" class="nav-link">Receive</a></li>
           <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
         </ul>
       </div>
     </div>
   </nav>
   <!-- END nav -->
-  
+
   <div class="block-31" style="position: relative;">
     <div class="owl-carousel loop-block-31 ">
       <div class="block-30 block-30-sm item" style="background-image: url('images/Food-Waste.png');" data-stellar-background-ratio="0.5">
@@ -106,25 +127,16 @@ $userInfo = $auth0->getUser();
           </div>
         </div>
       </div>
-      
+
     </div>
   </div>
 
-  <div>
-    <h1 style="text-align: center; margin-top: 5%">Search location</h1>
-      <div id="map"></div>
-      <script>
-        function initMap() {
-          var thane = {lat:19.2183, lng:72.9781};
-          var map = new google.maps.Map(document.getElementById('map'), {zoom:4, center:thane});
-          var marker = new google.maps.Marker({position:thane, map:map});
-        }
-      </script>
-      <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsVoY4zW3LEvh1FYV00kTm2LH71ArmzOs&callback=initMap"></script>
-  </div>
+  <h1 style="text-align: center; margin-top: 5%">Search location</h1>
+  <div id="map"></div>
+
 
   <div class="featured-section overlay-color-2" style="background-image: url('images/bg_2.jpg');">
-    
+
     <div class="container">
       <div class="row">
 
@@ -135,23 +147,23 @@ $userInfo = $auth0->getUser();
         <div class="col-md-6 pl-md-5">
 
           <div class="form-volunteer">
-          <?php if(!$userInfo): ?>
+            <?php if(!$userInfo): ?>
               <h2><a href="/login.php" > Click here to donate</a></h2>
-                  <!-- <a href="/login.php" >Log in</a> -->
+              <!-- <a href="/login.php" >Log in</a> -->
 
-          <?php else: ?>
-            <h2>Details</h2>
-            <form action="<?php echo $_SERVER["PHP_SELF"] ?>", method="POST">
-            
-              <!-- Location Script -->
-              <div id="loc">
-                <script> getLocation();</script>
-              </div>
+              <?php else: ?>
+                <h2>Details</h2>
+                <form action="<?php echo $_SERVER["PHP_SELF"] ?>", method="POST">
 
-              <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control py-2" id="name" placeholder="Enter your name">
-              </div>
+                  <!-- Location Script -->
+                  <div id="loc">
+                    <script> getLocation();</script>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control py-2" id="name" placeholder="Enter your name">
+                  </div>
               <!-- <div class="form-group">
                 <label for="email">Email</label>
                 <input type="text" class="form-control py-2" id="email" placeholder="Enter your email">
@@ -167,52 +179,52 @@ $userInfo = $auth0->getUser();
 
           <?php endif ?>
 
-            <?php
+          <?php
 
-              error_reporting(0);
+          error_reporting(0);
 
               //connect to mysql server
-              $host = "mysql-server";
-              $user = "root";
-              $pass = "root";
-              $db = "food-portal";
-              try {
-                  $conn = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
-                  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-              }
-              catch(PDOException $e) {
-                  echo "Connection failed: " . $e->getMessage();
-              }
+          $host = "mysql-server";
+          $user = "root";
+          $pass = "root";
+          $db = "food-portal";
+          try {
+            $conn = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          }
+          catch(PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+          }
 
-              $userInfo = $auth0->getUser();
+          $userInfo = $auth0->getUser();
 
-              if(isset($_POST["submit1"])) {
-                $food = $_POST["food"];
-                $donor = $userInfo['name'];
-                $addr = $_POST["addr"];
-                $lat  = $_COOKIE['lat'];
-                $lng  = $_COOKIE['lng'];
+          if(isset($_POST["submit1"])) {
+            $food = $_POST["food"];
+            $donor = $userInfo['name'];
+            $addr = $_POST["addr"];
+            $lat  = $_COOKIE['lat'];
+            $lng  = $_COOKIE['lng'];
             
-                try{
-                  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                  $sql = "INSERT INTO `markers`(food_name, donor_name, address, lat, lng)  VALUES ('$food', '$donor', '$addr', '$lat', '$lng')";
-                  $conn->exec($sql);
-                }
-                catch(PDOException $e){
-                  echo $e->getMessage();
-                }
-                $conn = null;
-              }
+            try{
+              $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+              $sql = "INSERT INTO `markers`(food_name, donor_name, address, lat, lng)  VALUES ('$food', '$donor', '$addr', '$lat', '$lng')";
+              $conn->exec($sql);
+            }
+            catch(PDOException $e){
+              echo $e->getMessage();
+            }
+            $conn = null;
+          }
 
-            ?>
-            
-          </div>
+          ?>
+
         </div>
-        
       </div>
-    </div>
 
-  </div> <!-- .featured-donate -->
+    </div>
+  </div>
+
+</div> <!-- .featured-donate -->
 
   <!-- <footer class="footer">
     <div class="container">
@@ -245,7 +257,7 @@ $userInfo = $auth0->getUser();
     </div>
   </footer> -->
 
-    <footer class="footer">
+  <footer class="footer">
     <div class="container">
       <div class="row mb-5">
 
@@ -256,12 +268,12 @@ $userInfo = $auth0->getUser();
         <div class="col-md-6 col-lg-6">
           <div class="block-23">
             <h3 class="heading-section">Get Connected</h3>
-              <ul>
-                <li><span class="icon icon-map-marker"></span><span class="text">123, Regular Address,India.</span></li>
-                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+91 1234567890</span></a></li>
-                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">foodcave@email.com</span></a></li>
-              </ul>
-            </div>
+            <ul>
+              <li><span class="icon icon-map-marker"></span><span class="text">123, Regular Address,India.</span></li>
+              <li><a href="#"><span class="icon icon-phone"></span><span class="text">+91 1234567890</span></a></li>
+              <li><a href="#"><span class="icon icon-envelope"></span><span class="text">foodcave@email.com</span></a></li>
+            </ul>
+          </div>
         </div>
 
       </div>
@@ -290,6 +302,5 @@ $userInfo = $auth0->getUser();
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
-    
-  </body>
+</body>
 </html>
