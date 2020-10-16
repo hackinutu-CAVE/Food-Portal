@@ -42,53 +42,55 @@ $userInfo = $auth0->getUser();
   <link rel="stylesheet" href="css/style.css">
 
   <style>
-    #map {
-      width: 90%;
-      height: 600px;
-      background-color: grey;
-      margin: 5% auto;
-    }
-  </style>
-  <style type="text/css">
-    table,tr,td,th{
-      text-align: center;
-      border-collapse: collapse;
-      font-family: ;
-      border-top: 0px;
-      border-left: 0px;
-      border-right: 0px;
-      font-size: 20px;
-    }
-    th{
-      font-weight: 10;
-    }
-    td,th{
-      width: 170px;
-      height: 40px;
-      padding: 8px;
-      text-align: left;
-      border-bottom: 2px solid #a0a0a0;
-    }
-    tr:hover {
-      background-color: #f5f5f5;
-    }
-    th{
-      background: #f7ca44; 
-      color: #ffffff;
-      font-weight: 500;
-      text-transform: uppercase;
-    }
-  </style>
+   #map {
 
-  <script>
-    let map, infoWindow;
+     width: 90%;
+     height: 600px;
+     background-color: grey;
+     margin: 0 auto;
+   }
+   #table1{
+     text-align: center;
+   }
+   table,tr,td,th{
+     text-align: center;
+     border-collapse: collapse;
+     font-family: ;
+     border-top: 0px;
+     border-left: 0px;
+     border-right: 0px;
+     font-size: 20px;
+   }
+   th{
+     font-weight: 10;
+   }
+   td,th{
+     width: 170px;
+     height: 40px;
+     padding: 8px;
+     text-align: left;
+     border-bottom: 2px solid #a0a0a0;
+   }
+   tr:hover {
+     background-color: #f5f5f5;
+   }
+   th{
+     background: #f7ca44; 
+     color: #ffffff;
+     font-weight: 500;
+     text-transform: uppercase;
+   }
+ </style>
 
-    function initMap() {
-      map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 19.2183, lng: 72.9781 },
-        zoom: 6,
-      });
-      infoWindow = new google.maps.InfoWindow();
+ <script>
+  let map, infoWindow;
+
+  function initMap() {
+    map = new google.maps.Map(document.getElementById("map"), {
+      center: { lat: 19.2183, lng: 72.9781 },
+      zoom: 6,
+    });
+    infoWindow = new google.maps.InfoWindow();
 
       // Try HTML5 geolocation.
       if (navigator.geolocation) {
@@ -99,6 +101,7 @@ $userInfo = $auth0->getUser();
               lng: position.coords.longitude,
             };
             var marker = new google.maps.Marker({position: pos, map: map});
+            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png')
           },
           () => {
             handleLocationError(true, infoWindow, map.getCenter());
@@ -124,7 +127,6 @@ $userInfo = $auth0->getUser();
   <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsVoY4zW3LEvh1FYV00kTm2LH71ArmzOs&callback=initMap"></script>
 </head>
 <body>
-
   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
       <a class="navbar-brand" href="index.php">FOOD CAVE</a>
@@ -158,12 +160,81 @@ $userInfo = $auth0->getUser();
 
     </div>
   </div>
-
+  
   <h1 style="text-align: center; margin-top: 5%">Search location</h1>
   <div id="map"></div>
 
+  <section id="table1">
+    <?php
+    error_reporting(0);
+    $host = "mysql-server";
+    $user = "root";
+    $pass = "root";
+    $db = "food-portal";
 
-  <div class="featured-section overlay-color-2" style="background-image: url('images/bg_2.jpg');">
+    function parseToXML($htmlStr)
+    {
+      $xmlStr=str_replace('<','&lt;',$htmlStr);
+      $xmlStr=str_replace('>','&gt;',$xmlStr);
+      $xmlStr=str_replace('"','&quot;',$xmlStr);
+      $xmlStr=str_replace("'",'&#39;',$xmlStr);
+      $xmlStr=str_replace("&",'&amp;',$xmlStr);
+      return $xmlStr;
+    }
+
+    try {
+      $conn = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    }
+    catch(PDOException $e) {
+      echo "Connection failed: " . $e->getMessage();
+    }
+
+      // Select all the rows in the markers table
+    try{
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $sql = $conn->prepare("SELECT * FROM markers");
+      $sql->execute();   
+    }
+    catch(PDOException $e){
+      echo $e->getMessage();
+    }
+
+    echo '<table id="table2" border="1" cellspacing="2" cellpadding="2"> 
+    <tr> 
+    <td> <font face="Arial">ID</font> </td> 
+    <td> <font face="Arial">Food Name</font> </td> 
+    <td> <font face="Arial">Donor Name</font> </td> 
+    <td> <font face="Arial">Address</font> </td> 
+    <td> <font face="Arial">Latitude</font> </td>
+    <td> <font face="Arial">Longitude</font> </td>  
+    </tr>';
+
+
+    $ind=0;
+    foreach ($sql->fetchAll(PDO::FETCH_ASSOC) as $row){
+      $field1name = $row["mid"];
+      $field2name = $row["food_name"];
+      $field3name = $row["donor_name"];
+      $field4name = $row["address"];
+      $field5name = $row["lat"];
+      $field6name = $row["lng"]; 
+
+      echo '<tr> 
+      <td>'.$field1name.'</td> 
+      <td>'.$field2name.'</td> 
+      <td>'.$field3name.'</td> 
+      <td>'.$field4name.'</td> 
+      <td>'.$field5name.'</td>
+      <td>'.$field6name.'</td> 
+      </tr>';
+      $ind = $ind + 1;
+    }
+    ?>
+  </section>
+
+
+  <div id="xyz" class="featured-section overlay-color-2" style="background-image: url('images/bg_2.jpg');">
 
     <div class="container">
       <div class="row">
@@ -309,7 +380,12 @@ $userInfo = $auth0->getUser();
   </footer>
 
   <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+  <div id="ftco-loader" class="show fullscreen">
+    <svg class="circular" width="48px" height="48px">
+      <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/>
+      <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/>
+    </svg>
+  </div>
 
 
   <script src="js/jquery.min.js"></script>
@@ -327,8 +403,8 @@ $userInfo = $auth0->getUser();
   
   <script src="js/aos.js"></script>
   <script src="js/jquery.animateNumber.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="js/google-map.js"></script>
-  <script src="js/main.js"></script>
-</body>
-</html>
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="js/google-map.js"></script> -->
+    <script src="js/main.js"></script>
+  </body>
+  </html>
