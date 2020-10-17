@@ -9,7 +9,7 @@ $auth0 = new Auth0([
     'domain' => 'cave421.us.auth0.com',
     'client_id' => 'Sxs0ka70IwMzJJW74Fw3LaAFVDxP7Vbw',
     'client_secret' => '-0K2p4wvZJ7pNhZeM6cyHJXKEqoCvf5GIwccN_VPPzFyo6MlbH5Zq6uo52c22ZCn',
-    'redirect_uri' => 'https://b34fd096e755.ngrok.io',
+    'redirect_uri' => 'http://localhost:8080/',
     'scope' => 'openid profile email',
 ]);
 
