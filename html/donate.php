@@ -4,68 +4,67 @@ require 'auth.php';
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Food CAVE</title>
+<head>
+  <title>Food CAVE</title>
 
-      <!-- Add location script -->
-      <script>
-          var x = document.getElementById("loc");
+  <!-- Add location script -->
+  <script>
+    var x = document.getElementById("loc");
 
-          function getLocation() {
-            if (navigator.geolocation) {
-              navigator.geolocation.getCurrentPosition(showPosition);
-            } else {
-              x.innerHTML = "Geolocation is not supported by this browser.";
-            }
-          }
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+    }
 
-          function showPosition(position) {
-            var lat = position.coords.latitude;
-            var lng = position.coords.longitude;
-            // alert(lat+","+lng);
-            document.cookie = "lat = " + lat;
-            document.cookie = "lng = " + lng;
-          }
-        </script>
+    function showPosition(position) {
+      var lat = position.coords.latitude;
+      var lng = position.coords.longitude;
+      document.cookie = "lat = " + lat;
+      document.cookie = "lng = " + lng;
+    }
+  </script>
 
-          <!-- End location script -->
+  <!-- End location script -->
 
-    <link rel="icon" type="image/png" href="images/logo.png">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <link href="https://fonts.googleapis.com/css?family=Overpass:300,400,500|Dosis:400,700" rel="stylesheet">
-    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/aos.css">
-    <link rel="stylesheet" href="css/ionicons.min.css">
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="css/jquery.timepicker.css">
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/icomoon.css">
+        <link rel="icon" type="image/png" href="images/logo.png">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Overpass:300,400,500|Dosis:400,700" rel="stylesheet">
+        <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+        <link rel="stylesheet" href="css/animate.css">
+        <link rel="stylesheet" href="css/owl.carousel.min.css">
+        <link rel="stylesheet" href="css/owl.theme.default.min.css">
+        <link rel="stylesheet" href="css/magnific-popup.css">
+        <link rel="stylesheet" href="css/aos.css">
+        <link rel="stylesheet" href="css/ionicons.min.css">
+        <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+        <link rel="stylesheet" href="css/jquery.timepicker.css">
+        <link rel="stylesheet" href="css/flaticon.css">
+        <link rel="stylesheet" href="css/icomoon.css">
 
-  </head>
-  <body>
-    
-  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-    <div class="container">
-      <a class="navbar-brand" href="index.php">Food CAVE</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="oi oi-menu"></span> Menu
-      </button>
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/style.css">
 
-      <div class="collapse navbar-collapse" id="ftco-nav">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
-          <li class="nav-item active"><a href="donate.php" class="nav-link">Donate</a></li>
-          <li class="nav-item"><a href="receive.php" class="nav-link">Receive</a></li>
-          <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
+      </head>
+      <body>
+
+        <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+          <div class="container">
+            <a class="navbar-brand" href="index.php">Food CAVE</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
+                <li class="nav-item active"><a href="donate.php" class="nav-link">Donate</a></li>
+                <li class="nav-item"><a href="receive.php" class="nav-link">Receive</a></li>
+                <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
 <!--          <li class="nav-item"><a href="how-it-works.html" class="nav-link">How It Works</a></li>
           <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
           <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
@@ -139,7 +138,7 @@ require 'auth.php';
   </div> <!-- .section -->
 
   <div class="featured-section overlay-color-2" style="background-image: url('images/bg_2.jpg');">
-    
+
     <div class="container">
       <div class="row">
 
@@ -157,16 +156,16 @@ require 'auth.php';
             <?php if(!$userInfo): ?>
               <!-- <h2>Random test</h2> --><br>
               <a href="/login.php" > <h1> Click here to donate</h1></a>
-                  <!-- <a href="/login.php" >Log in</a> -->
+              <!-- <a href="/login.php" >Log in</a> -->
 
-            <?php else: ?>
+              <?php else: ?>
 
-            <form action="<?php echo $_SERVER["PHP_SELF"] ?>", method="POST">
-            
-              <!-- Location Script -->
-              <div id="loc">
-                <script> getLocation();</script>
-              </div>
+                <form action="<?php echo $_SERVER["PHP_SELF"] ?>", method="POST">
+
+                  <!-- Location Script -->
+                  <div id="loc">
+                    <script> getLocation();</script>
+                  </div>
 
               <!-- <div class="form-group">
                 <label for="name">Name</label>
@@ -184,15 +183,20 @@ require 'auth.php';
               </div>
 
               <div class="form-group">
-              <p><i>At what date and time food will be available:</i></p>
-              <input type="date" name="hdate">
-              <input type="time" name="htime">
+                <!-- <label for="name">Name</label> -->
+                <input type="text" class="form-control py-2" name="restchoice" id="restch" placeholder="Collection point you want to donante to">
               </div>
-               
+
               <div class="form-group">
-              <p><i>By what date and time food will expire:</i></p>
-              <input type="date" name="xdate">
-              <input type="time" name="xtime">
+                <p><i>At what date and time food will be available:</i></p>
+                <input type="date" name="hdate">
+                <input type="time" name="htime">
+              </div>
+
+              <div class="form-group">
+                <p><i>By what date and time food will expire:</i></p>
+                <input type="date" name="xdate">
+                <input type="time" name="xtime">
               </div>
               
               <!--<div class="form-group">
@@ -217,83 +221,123 @@ require 'auth.php';
               </div>
             </form>
 
-            <?php endif ?>
+            <div>
+            <div class="container" style="margin: 5%; color: #000000; text-align: center;" class="col-md-6">
+                <form action="<?php echo $_SERVER["PHP_SELF"] ?>", method="POST">
+                  <div class="form-group">
+                    <h2>Do you own a Restaurant?? Want to be a Donor??</h2><br>
+                    <input type="text" name="rName" class="form-control py-2" placeholder="Restaurant name">
+                  </div>
 
-            <?php
+                  <div class="form-group">
+                    <input type="email" name="email" class="form-control py-2" placeholder="Email">
+                  </div>
 
-              error_reporting(0);
+                  <div class="form-group">
+                    <input type="text" name="rAdd" class="form-control py-2" placeholder="Address">
+                  </div>
+
+                  <div class="form-group" style="text-align: center">
+                    <input type="submit" class="btn btn-white px-5 py-2" name="submit2">
+                  </div>
+                </form>
+              </div> 
+            </div>
+
+          <?php endif ?>
+
+          <?php
+
+          error_reporting(0);
 
               //connect to mysql server
-              $host = "mysql-server";
-              $user = "root";
-              $pass = "root";
-              $db = "food-portal";
-              try {
-                  $conn = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
-                  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-              }
-              catch(PDOException $e) {
-                  echo "Connection failed: " . $e->getMessage();
-              }
+          $host = "mysql-server";
+          $user = "root";
+          $pass = "root";
+          $db = "food-portal";
+          try {
+            $conn = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          }
+          catch(PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+          }
 
-              $userInfo = $auth0->getUser();
+          $userInfo = $auth0->getUser();
 
-              if(isset($_POST["submit1"])) {
-                $food = $_POST["food"];
-                $donor = $userInfo['name'];
-                $donoremail = $userInfo['email'];
-                $addr = $_POST["addr"];
-                $date = $_POST["hdate"];
-                $time = $_POST["htime"];
-                $xdate = $_POST["xdate"];
-                $xtime = $_POST["xtime"];
-                $expiry = $_POST["expiry"];
-                $lat  = $_COOKIE['lat'];
-                $lng  = $_COOKIE['lng'];
+          if(isset($_POST["submit1"])) {
+            $food = $_POST["food"];
+            $donor = $userInfo['name'];
+            $donoremail = $userInfo['email'];
+            $addr = $_POST["addr"];
+            $date = $_POST["hdate"];
+            $time = $_POST["htime"];
+            $xdate = $_POST["xdate"];
+            $xtime = $_POST["xtime"];
+            $expiry = $_POST["expiry"];
+            $lat  = $_COOKIE['lat'];
+            $lng  = $_COOKIE['lng'];
             
-                try{
-                  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                  $sql = "INSERT INTO `markers`(food_name, donor_name, donor_email, address, date, time, food_expiry_date, food_expiry_time, lat, lng)  VALUES ('$food', '$donor', '$donoremail', '$addr', '$date', '$time', '$xdate', '$xtime', '$lat', '$lng')";
-                  $conn->exec($sql);
-                }
-                catch(PDOException $e){
-                  echo $e->getMessage();
-                }
-                $conn = null;
-              }
+            try{
+              $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+              $sql = "INSERT INTO markers(food_name, donor_name, donor_email, address, date, time, food_expiry_date, food_expiry_time, lat, lng)  VALUES ('$food', '$donor', '$donoremail', '$addr', '$date', '$time', '$xdate', '$xtime', '$lat', '$lng')";
+              $conn->exec($sql);
+            }
+            catch(PDOException $e){
+              echo $e->getMessage();
+            }
+            $conn = null;
+          }
 
-            ?>
-            
-          </div>
+          if(isset($_POST["submit2"])) {
+            $rname = $_COOKIE['rName'];
+            $email = $_COOKIE['email'];
+            $radd = $_COOKIE['rAdd'];
+            $lat  = $_COOKIE['lat'];
+            $lng  = $_COOKIE['lng'];
+
+            try{
+              $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+              $sql = "INSERT INTO restaurant(rname, email, radd, lat, lng)  VALUES ('$rname', '$email', '$radd', '$lat', '$lng')";
+              $conn->exec($sql);
+            }
+            catch(PDOException $e){
+              echo $e->getMessage();
+            }
+            $conn = null;
+          }
+          ?>
+
         </div>
-        
       </div>
+
     </div>
+  </div>
 
-  </div> <!-- .featured-donate -->
+</div> <!-- .featured-donate -->
 
-    <footer class="footer">
-    <div class="container">
-      <div class="row mb-5">
+<footer class="footer">
+  <div class="container">
+    <div class="row mb-5">
 
-        <div class="col-md-6 mb-5 mb-md-0">
-          <img src="images/logo.png" alt="Image placeholder" class="img-fluid">
-        </div>
-
-        <div class="col-md-6 col-lg-6">
-          <div class="block-23">
-            <h3 class="heading-section">Get Connected</h3>
-              <ul>
-                <li><span class="icon icon-map-marker"></span><span class="text">123, Regular Address,India.</span></li>
-                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+91 1234567890</span></a></li>
-                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">foodcave@email.com</span></a></li>
-              </ul>
-            </div>
-        </div>
-
+      <div class="col-md-6 mb-5 mb-md-0">
+        <img src="images/logo.png" alt="Image placeholder" class="img-fluid">
       </div>
+
+      <div class="col-md-6 col-lg-6">
+        <div class="block-23">
+          <h3 class="heading-section">Get Connected</h3>
+          <ul>
+            <li><span class="icon icon-map-marker"></span><span class="text">123, Regular Address,India.</span></li>
+            <li><a href="#"><span class="icon icon-phone"></span><span class="text">+91 1234567890</span></a></li>
+            <li><a href="#"><span class="icon icon-envelope"></span><span class="text">foodcave@email.com</span></a></li>
+          </ul>
+        </div>
+      </div>
+
     </div>
-  </footer>
+  </div>
+</footer>
 <!--
   <footer class="footer">
     <div class="container">
@@ -374,28 +418,28 @@ require 'auth.php';
   </footer>
 -->
 
-  <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+<!-- loader -->
+<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.easing.1.3.js"></script>
-  <script src="js/jquery.waypoints.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/bootstrap-datepicker.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-migrate-3.0.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/jquery.waypoints.min.js"></script>
+<script src="js/jquery.stellar.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/bootstrap-datepicker.js"></script>
 
-  <script src="js/jquery.fancybox.min.js"></script>
-  
-  <script src="js/aos.js"></script>
-  <script src="js/jquery.animateNumber.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="js/google-map.js"></script>
-  <script src="js/main.js"></script>
-    
-  </body>
+<script src="js/jquery.fancybox.min.js"></script>
+
+<script src="js/aos.js"></script>
+<script src="js/jquery.animateNumber.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+<script src="js/google-map.js"></script>
+<script src="js/main.js"></script>
+
+</body>
 </html>

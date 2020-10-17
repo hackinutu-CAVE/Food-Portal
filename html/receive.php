@@ -99,68 +99,39 @@ require 'auth.php';
       handleLocationError(false, infoWindow, map.getCenter());
     }
 
-    const pos1 = {
-      lat: 19.3,
-      lng: 73.0,
-    };
-    var marker1 = new google.maps.Marker({position: pos1, map: map});
-    marker1.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+    var cor1 =[
+      [19.3,73.0],
+      [19.1,73.189],
+      [18.987,73.189],
+      [19.98465,73.65468],
+      [19.461,73.01338],
+    ];
 
-    const pos2 = {
-      lat: 19.1,
-      lng: 73.189,
-    };
-    var marker2 = new google.maps.Marker({position: pos2, map: map});
-    marker2.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+    var cor2 =[
+      [19.98465,73.654],
+      [19.1354,73.7465],
+      [19.32168,73.9451],
+      [19.354,73.789465]
+    ];
 
-    const pos3 = {
-      lat: 18.987,
-      lng: 73.189,
-    };
-    var marker3 = new google.maps.Marker({position: pos3, map: map});
-    marker3.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+    var i;
+    for(i=0;i<cor1.length;i++) {
+      const pos1 = {
+        lat: cor1[i][0],
+        lng: cor1[i][1],
+      };
+      var marker1 = new google.maps.Marker({position: pos1, map: map});
+      marker1.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+    }
 
-    const pos4 = {
-      lat: 19.98465,
-      lng: 73.65468,
-    };
-    var marker4 = new google.maps.Marker({position: pos4, map: map});
-    marker4.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
-
-    const pos5 = {
-      lat: 19.461,
-      lng: 73.01338,
-    };
-    var marker5 = new google.maps.Marker({position: pos5, map: map});
-    marker5.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
-
-    const pos6 = {
-      lat: 19.98465,
-      lng: 73.654,
-    };
-    var marker6 = new google.maps.Marker({position: pos6, map: map});
-    marker6.setIcon('http://maps.google.com/mapfiles/ms/icons/purple-dot.png');
-
-    const pos7 = {
-      lat: 19.1354,
-      lng: 73.7465,
-    };
-    var marker7 = new google.maps.Marker({position: pos7, map: map});
-    marker7.setIcon('http://maps.google.com/mapfiles/ms/icons/purple-dot.png');
-
-    const pos8 = {
-      lat: 19.32168,
-      lng: 73.9451,
-    };
-    var marker8 = new google.maps.Marker({position: pos8, map: map});
-    marker8.setIcon('http://maps.google.com/mapfiles/ms/icons/purple-dot.png');
-
-    const pos9 = {
-      lat: 19.354,
-      lng: 73.789465,
-    };
-    var marker9 = new google.maps.Marker({position: pos9, map: map});
-    marker9.setIcon('http://maps.google.com/mapfiles/ms/icons/purple-dot.png');
+    for(i=0;i<cor2.length;i++) {
+      const pos1 = {
+        lat: cor2[i][0],
+        lng: cor2[i][1],
+      };
+      var marker1 = new google.maps.Marker({position: pos1, map: map});
+      marker1.setIcon('http://maps.google.com/mapfiles/ms/icons/purple-dot.png');
+    }
   }
 
   function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -210,6 +181,9 @@ require 'auth.php';
     </div>
   </div>
   
+
+  <h1 style="text-align: center; margin-top: 5%">Search location</h1>
+  <div id="map"></div>
   
 
   <section id="table1">
@@ -318,9 +292,6 @@ require 'auth.php';
     }
     ?>
   </section>
-
-  <h1 style="text-align: center; margin-top: 5%">Search location</h1>
-  <div id="map"></div>
 
 
   <div id="xyz" class="featured-section overlay-color-2" style="background-image: url('images/bg_2.jpg');">
