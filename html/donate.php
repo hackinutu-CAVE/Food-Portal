@@ -222,7 +222,7 @@ require 'auth.php';
             </form>
 
             <div>
-              <div class="container" style="margin: 5% 20%; color: #000000; text-align: center;" class="col-md-6">
+            <div class="container" style="margin: 5%; color: #000000; text-align: center;" class="col-md-6">
                 <form action="<?php echo $_SERVER["PHP_SELF"] ?>", method="POST">
                   <div class="form-group">
                     <h2>Do you own a Restaurant?? Want to be a Donor??</h2><br>
