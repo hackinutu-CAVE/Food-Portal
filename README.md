@@ -30,7 +30,7 @@ cd Food-Portal
 
 2. Run docker-compose
 ```
-docker-compose up -d --build
+docker-compose up -d
 ```
 
 Website Home page will be at localhost:8080
@@ -79,6 +79,10 @@ docker exec -it foodportal bash
 ```
 ```
 php composer install
+```
+Exit container using Ctrl + D
+```
+docker-compose up -d --build
 ```
 
 
