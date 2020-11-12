@@ -74,16 +74,19 @@ CREATE TABLE contact(
 That's it.
 
 ## To solve blank screen error:
+
+1. Delete vendor/composer folder and vendor/autoload.php file
+
+2. Run bash inside container
 ```
 docker exec -it foodportal bash
 ```
+3. Install composer
 ```
 php composer install
 ```
 Exit container using Ctrl + D
-```
-docker-compose up -d --build
-```
+
 
 
 ## Built With
