@@ -16,8 +16,6 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-    volumes:
-      - mysql-data:/var/lib/mysql
     ports:
         - "3406:3306"
 
@@ -31,4 +29,4 @@ services:
     ports:
       - "5000:80"
 volumes:
-  mysql-data:
+  newmysql-data:
