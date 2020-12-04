@@ -182,10 +182,10 @@ require 'auth.php';
                 <input type="text" class="form-control py-2" name="addr" id="address" placeholder="Your Address">
               </div>
 
-              <div class="form-group">
-                <!-- <label for="name">Name</label> -->
+              <!-- <div class="form-group">
+                 <label for="name">Name</label>
                 <input type="text" class="form-control py-2" name="restchoice" id="restch" placeholder="Collection point you want to donante to">
-              </div>
+              </div> -->
 
               <div class="form-group">
                 <p><i>At what date and time food will be available:</i></p>
