@@ -307,7 +307,7 @@ require 'auth.php';
 
           <div class="form-volunteer">
             <?php if(!$userInfo): ?>
-              <a href="/login.php" > <h2> Click here to donate</h2></a>
+              <a href="/login.php" > <h2> Click here to recieve food</h2></a>
               <!-- <a href="/login.php" >Log in</a> -->
 
               <?php else: ?>
